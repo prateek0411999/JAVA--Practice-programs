@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Student implements Comparable<Student>
+{
+	int rollno;
+	Student(int rollno)
+	{
+		this.rollno=rollno;
+		
+	}
+	public int compareTo(Student s)
+	{
+		if(this.rollno > s.rollno)
+		{
+			return 1;
+		}	
+		elseif(this.rollno < s.rollno)
+			return 1;
+		else
+			return 0; 
+		
+	}
+}
+class Temp
+{
+	pubilc static void main(String args[])
+	{
+		Student s1 = new Student(10);
+		Student s2 = new Student(5);
+		TreeSet<Student> obj=new TreeSet<Student>();
+		obj.add(s1);
+		obj.add(s2);
+		TreeSet<Student> itr=obj.iterator();
+		while(itr.hasNext())
+		{
+			System.out.println(itr.next().rollno);
+		}
+		
+	}
+}

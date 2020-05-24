@@ -1,0 +1,53 @@
+interface Details
+{
+	void showDetails();
+}
+abstract class Device
+{
+	private String date_of_mfg;
+	public String getMfgDate();
+}
+class Smartphone extends Device implements Details
+{
+	private String company;
+	public String getMfgDate()
+	{
+		return this.date_of_mfg;
+	}
+	public Smartphone(String aa)
+	{
+		this.company=aa;
+		this.date_of_mfg="10/1/18";
+	}
+	
+}
+class Tablet extends Device implements Details
+{
+	private int cost;
+	public Tablet(int a)
+	{
+		this.cost=a;
+	}
+	
+}
+class Test1
+{
+	public static void main(String args[])
+	{
+		Test1 t=new Test1();
+		Smartphone s1=new Smartphone("Apple");
+		Tablet t1=new Tablet(37000);
+		
+		ArrayList<Object> lst=new ArrayList<Object>();
+		lst.add(s1);
+		lst.add(t1);
+		t.display();
+	}
+	void display()
+	{
+		for(int i=0;i<2;i++)
+		{
+			System.out.println(lst.get(i));
+		}
+	}	
+}

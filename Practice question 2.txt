@@ -1,0 +1,33 @@
+import java.util.*;
+class Person
+{
+	String name;
+	int age;
+	int mobno;
+	
+	void display()
+	{
+	
+	}
+	abstract void input();
+}
+class Employee extends Person
+{
+	void input1()
+	{
+	String company;
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter the compony name");
+	company=sc.nextLine();	
+	}
+}
+class Student extends Person
+{
+	void input2()
+	{
+	String college;
+	Scanner s=new Scanner(System.in);
+	System.out.println("Enter the compony name");
+	college=s.nextLine();
+	} 
+}

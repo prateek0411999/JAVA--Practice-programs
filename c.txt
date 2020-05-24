@@ -1,0 +1,106 @@
+#GRADED FUNCTION: DO NOT EDIT THIS LINE
+def mean_naive(X):
+    "Compute the mean for a dataset X nby iterating over the data points"
+    # X is of size (D,N) where D is the dimensionality and N the number of data points
+    D, N = X.shape
+    mean = np.zeros((D,1))
+    ### Edit the code; iterate over the dataset and compute the mean vector.
+        # Update the mean vector
+    mean = (np.sum(X,axis=1)/N).reshape(D,1)
+    ###
+    return mean
+
+def cov_naive(X):
+    """Compute the covariance for a dataset of size (D,N) 
+    where D is the dimension and N is the number of data points"""
+    D, N = X.shape
+    ### Edit the code below to compute the covariance matrix by iterating over the dataset.
+    covariance = np.zeros((D, D))
+    ### Update covariance
+    temp = X - mean_naive(X)
+    covariance = (temp @ temp.T)/N
+    ###
+    return covariance
+
+
+def mean(X):
+    "Compute the mean for a dataset of size (D,N) where D is the dimension and N is the number of data points"
+    # given a dataset of size (D, N), the mean should be an array of size (D,1)
+    # you can use np.mean, but pay close attention to the shape of the mean vector you are returning.
+    D, N = X.shape
+    ### Edit the code to compute a (D,1) array `mean` for the mean of dataset.
+    mean = np.zeros((D,1))
+    ### Update mean here
+    mean = np.mean(X, axis=1, keepdims=True)
+    ###
+    return mean
+
+def cov(X):
+    "Compute the covariance for a dataset"
+    # X is of size (D,N)
+    # It is possible to vectorize our code for computing the covariance with matrix multiplications,
+    # i.e., we do not need to explicitly
+    # iterate over the entire dataset as looping in Python tends to be slow
+    # We challenge you to give a vectorized implementation without using np.cov, but if you choose to use np.cov,
+    # be sure to pass in bias=True.
+    D, N = X.shape
+    ### Edit the code to compute the covariance matrix
+    covariance_matrix = np.zeros((D, D))
+    ### Update covariance_matrix here
+    covariance_matrix = cov_naive(X)
+    ###
+    return covariance_matrix
+
+
+
+
+
+# Let's first test the functions on some hand-crafted dataset.
+
+X_test = np.arange(6).reshape(2,3)
+expected_test_mean = np.array([1., 4.]).reshape(-1, 1)
+expected_test_cov = np.array([[2/3., 2/3.], [2/3.,2/3.]])
+print('X:\n', X_test)
+print('Expected mean:\n', expected_test_mean)
+print('Expected covariance:\n', expected_test_cov)
+
+np.testing.assert_almost_equal(mean(X_test), expected_test_mean)
+np.testing.assert_almost_equal(mean_naive(X_test), expected_test_mean)
+
+np.testing.assert_almost_equal(cov(X_test), expected_test_cov)
+np.testing.assert_almost_equal(cov_naive(X_test), expected_test_cov)
+
+
+
+np.testing.assert_almost_equal(mean(faces), mean_naive(faces), decimal=6)
+np.testing.assert_almost_equal(cov(faces), cov_naive(faces))
+
+
+
+def mean_face(faces):
+    return faces.mean(axis=1).reshape((64, 64))
+
+plt.imshow(mean_face(faces), cmap='gray');
+
+
+
+
+# We have some HUUUGE data matrix which we want to compute its mean
+X = np.random.randn(20, 1000)
+# Benchmarking time for computing mean
+%time mean_naive(X)
+%time mean(X)
+pass
+
+
+
+
+# Benchmarking time for computing covariance
+%time cov_naive(X)
+%time cov(X)
+pass
+
+
+
+
+https://github.com/launchcode01dl/mathematics-for-machine-learning-cousera/blob/master/course3%20-%20principle%20component%20analysis/week1/mean%2Ccovariance%20of%20a%20dataset%20and%20effect%20of%20a%20linear%20transformation.ipynb

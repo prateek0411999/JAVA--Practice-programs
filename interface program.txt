@@ -1,0 +1,39 @@
+interface Colors
+{
+	default void showColor()
+	{
+	
+	}
+}
+interface Shape
+{
+	void area();
+}
+interface Coordinates
+{
+	static void printCoordinates()
+	{
+		
+	}
+}
+class Show
+{
+	abstract void display();
+}
+class Circle extends Show implements Colors,Shape,Coordinates
+{
+	int radius;
+	
+	void area()
+	{
+			
+	}
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		Circle c=new Circle();
+		
+	}	
+}
